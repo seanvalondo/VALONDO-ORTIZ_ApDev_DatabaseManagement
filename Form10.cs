@@ -264,34 +264,34 @@ namespace WindowsFormsApp1
 
         private void textBox8_TextChanged(object sender, EventArgs e)
         {
-            string searchTerm = textBox7.Text;
+            string searchTerm = textBox8.Text;
             string connectionString = @"Data Source=DESKTOP-QH7OIAV\SQLEXPRESS;database=VALONDO_VendingCola;Trusted_Connection=True";
 
 
-            string query = "SELECT * FROM TimeLog WHERE userid LIKE @userid"; // Adjust column names and table name
+            string query = "SELECT * FROM TimeLog WHERE userid LIKE '%' + @userid + '%'";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@userid", "%" + searchTerm + "%");
-
+            
                     try
                     {
                         connection.Open();
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
-
-
+            
+            
                         dataGridView2.DataSource = dataTable;
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Error: " + ex.Message);
                     }
-                }
-            }
+    }
+}
         }
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
