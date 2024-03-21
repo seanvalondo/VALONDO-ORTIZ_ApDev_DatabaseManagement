@@ -2802,7 +2802,7 @@ namespace WindowsFormsApp1
                     string query = @"
                     
 
-                    SELECT dbo.AddGreeting('Welcome to Wrap n Crunch') AS Greeting;";
+                    SELECT * FROM dbo.ComputeTotalItemsAndAmount();";
 
 
                     //define the SqlCommand object
